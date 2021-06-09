@@ -21,7 +21,7 @@ double Round(double f)
 }
 
 
-void Generate2x2Matrix()
+void GenerateEquations()
 {
 	srand ( time(NULL) );
 
@@ -34,11 +34,11 @@ void Generate2x2Matrix()
 	b[1]	= Round((double)rand()/(double)(rand()));
 
 	cout << "A: " << endl;
-	cout << A[0][0] << ", " << A[0][1] << endl;
-	cout << A[1][0] << ", " << A[1][1] << endl;
+	cout << A[0][0] << "\t " << A[0][1] << endl;
+	cout << A[1][0] << "\t " << A[1][1] << endl;
 
 	cout << "b:" << endl;
-	cout << b[0] << ", " << b[1] << endl << endl;
+	cout << b[0] << "\t " << b[1] << endl << endl;
 }
 
 
@@ -112,7 +112,7 @@ int main(void)
 	}	
 	
 	//Form matrix
-	Generate2x2Matrix();
+	GenerateEquations();
 
 	if (choice == 1)
 		GaussianEliminationWithoutPivoting();
