@@ -42,12 +42,6 @@ bool IsDiagonallyDominant()
 
 bool PassedL1Norm()
 {
-	//Testing L1 norm for Gauss Jacobi
-	/*cout << "A: " << endl;
-	cout << A[0][0] << "\t " << A[0][1] << "\t " << A[0][2] << endl;
-	cout << A[1][0] << "\t " << A[1][1] << "\t " << A[1][2] << endl;
-	cout << A[2][0] << "\t " << A[2][1] << "\t " << A[2][2] << endl;*/
-
 	float temp[3][3];
 
 	memcpy(temp, A, sizeof(float) * 3 * 3);
@@ -77,10 +71,6 @@ bool PassedL1Norm()
 	temp[2][1] *= -1;
 	temp[2][2] *= -1;
 
-	/*cout << temp[0][0] << "\t " << temp[0][1] << "\t " << temp[0][2] << endl;
-	cout << temp[1][0] << "\t " << temp[1][1] << "\t " << temp[1][2] << endl;
-	cout << temp[2][0] << "\t " << temp[2][1] << "\t " << temp[2][2] << endl;*/
-
 	float col0_sum = fabs(temp[0][0]) + fabs(temp[1][0]) + fabs(temp[2][0]);
 	float col1_sum = fabs(temp[0][1]) + fabs(temp[1][1]) + fabs(temp[2][1]);
 	float col2_sum = fabs(temp[0][2]) + fabs(temp[1][2]) + fabs(temp[2][2]);
@@ -97,27 +87,22 @@ bool PassedL1Norm()
 
 void GenerateEquations()
 {
-	srand (time(NULL));
+	
+	A[0][0]	= GetRandomNumber();
+	A[0][1]	= GetRandomNumber();
+	A[0][2]	= GetRandomNumber();
 
-	//do{
+	A[1][0]	= GetRandomNumber();
+	A[1][1]	= GetRandomNumber();
+	A[1][2]	= GetRandomNumber();
 
-		A[0][0]	= GetRandomNumber();
-		A[0][1]	= GetRandomNumber();
-		A[0][2]	= GetRandomNumber();
+	A[2][0]	= GetRandomNumber();
+	A[2][1]	= GetRandomNumber();
+	A[2][2]	= GetRandomNumber();
 
-		A[1][0]	= GetRandomNumber();
-		A[1][1]	= GetRandomNumber();
-		A[1][2]	= GetRandomNumber();
-
-		A[2][0]	= GetRandomNumber();
-		A[2][1]	= GetRandomNumber();
-		A[2][2]	= GetRandomNumber();
-
-		b[0]	= GetRandomNumber();
-		b[1]	= GetRandomNumber();
-		b[2]	= GetRandomNumber();
-
-	//}while(!IsDiagonallyDominant() || !PassedL1Norm());
+	b[0]	= GetRandomNumber();
+	b[1]	= GetRandomNumber();
+	b[2]	= GetRandomNumber();
 
 }
 
@@ -349,9 +334,6 @@ void CreateNonDiagonallyDominantMatrix()
 	GenerateEquations();
 
 	A[0][2] = A[0][0] + GetRandomNumber();
-
-	/*if (!IsDiagonallyDominant())
-		cout << "Not Diagonally Dominant" << endl;*/
 }
 
 
@@ -366,9 +348,12 @@ void CreateDiagonallyDominantMatrix()
 
 int main(void)
 {
+
+	srand (time(NULL));
+
 	//Form matrix
 	cout << "*******************Diagonally Dominant Matrix*******************" << endl;
-	GenerateEquations();
+	CreateDiagonallyDominantMatrix();
 
 	cout << "A: " << endl;
 	cout << A[0][0] << "\t " << A[0][1] << "\t " << A[0][2] << endl;
