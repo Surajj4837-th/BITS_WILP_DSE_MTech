@@ -1,0 +1,94 @@
+*******************Diagonally Dominant Matrix*******************
+A:
+2.8185   0.4711  6.0836
+0.5136   6.5139  1.2835
+0.0223   0.7695  58.4959
+b:
+6.1577   0.8187  6.1577
+
+*******************Gauss Siedel Method*******************
+Iteration: 1
+                x = 2.18474
+                y = -0.0465749
+                z = 0.0132013
+Iteration: 2
+                x = 2.16403
+                y = -0.0475432
+                z = 0.0132219
+
+
+Convergence happened with following values:
+x: 2.16403
+y: -0.0475432
+z: 0.0132219
+*******************Gauss Jacobi Method*******************
+Iteration: 1
+                x = 2.18474
+                y = 0.125685
+                z = 0.0134215
+Iteration: 2
+                x = 2.13477
+                y = -0.0492195
+                z = 0.0109352
+Iteration: 3
+                x = 2.16937
+                y = -0.044789
+                z = 0.0132551
+Iteration: 4
+                x = 2.16362
+                y = -0.0479743
+                z = 0.0131836
+
+
+Convergence happened with following values:
+x: 2.16362
+y: -0.0479743
+z: 0.0131836
+
+
+*******************Diagonally Non-dominant Matrix*******************
+A:
+2.8185   0.4711  4.438
+0.5136   6.5139  1.2835
+0.0223   0.7695  58.4959
+b:
+6.1577   0.8187  6.1577
+
+*******************Gauss Siedel Method*******************
+Iteration: 1
+                x = 2.18474
+                y = -0.0465749
+                z = 0.0132013
+Iteration: 2
+                x = 2.17174
+                y = -0.0481509
+                z = 0.0132269
+
+
+Convergence happened with following values:
+x: 2.17174
+y: -0.0481509
+z: 0.0132269
+*******************Gauss Jacobi Method*******************
+Iteration: 1
+                x = 2.18474
+                y = 0.125685
+                z = 0.0134215
+Iteration: 2
+                x = 2.1426
+                y = -0.0492195
+                z = 0.0109352
+Iteration: 3
+                x = 2.17575
+                y = -0.0454069
+                z = 0.0132521
+Iteration: 4
+                x = 2.17147
+                y = -0.0484771
+                z = 0.0131893
+
+
+Convergence happened with following values:
+x: 2.17147
+y: -0.0484771
+z: 0.0131893

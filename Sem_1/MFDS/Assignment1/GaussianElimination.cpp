@@ -92,20 +92,10 @@ void GaussianEliminationWithPivoting()
 
 int main(void)
 {
-	cout << "Enter significant digits (2,3,4,5,6)" << endl;
+	cout << "Enter significant digits (3,4,5,6)" << endl;
 	cin >> sd;
 
-	cout << "Enter 1 for Gaussian Elimination without pivoting else enter 2." << endl;
-	int choice = 0;
-	cin >> choice;
-
-	if (choice < 1 || choice > 2)
-	{
-		cout << "invalid pivoting choice." << endl;
-		return 0;
-	}
-
-	if (sd > 6 || sd < 2)
+	if (sd > 6 || sd < 3)
 	{
 		cout << "invalid significant digits" << endl;
 		return 0;
@@ -114,13 +104,22 @@ int main(void)
 	//Form matrix
 	GenerateEquations();
 
-	if (choice == 1)
-		GaussianEliminationWithoutPivoting();
-	else
-		GaussianEliminationWithPivoting();
+	cout << "******************Without Pivoting******************" << endl;
+	GaussianEliminationWithoutPivoting();
 
 	double y = Round(b[1]/A[1][1]);
 	double x = Round(Round(b[0] - Round(y * A[0][1]))/A[0][0]);
+
+	cout << "Solution:" << endl;
+	cout << "x: " << x << endl;
+	cout << "y: " << y << endl;
+
+
+	cout << endl << "******************With Pivoting******************" << endl;
+	GaussianEliminationWithPivoting();
+
+	y = Round(b[1]/A[1][1]);
+	x = Round(Round(b[0] - Round(y * A[0][1]))/A[0][0]);
 
 	cout << "Solution:" << endl;
 	cout << "x: " << x << endl;

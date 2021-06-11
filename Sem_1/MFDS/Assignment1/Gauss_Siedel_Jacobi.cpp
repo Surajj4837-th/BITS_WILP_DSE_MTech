@@ -2,6 +2,7 @@
 #include <sstream>
 #include <iomanip>
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
@@ -98,7 +99,7 @@ void GenerateEquations()
 {
 	srand (time(NULL));
 
-	do{
+	//do{
 
 		A[0][0]	= GetRandomNumber();
 		A[0][1]	= GetRandomNumber();
@@ -116,15 +117,8 @@ void GenerateEquations()
 		b[1]	= GetRandomNumber();
 		b[2]	= GetRandomNumber();
 
-	}while(!IsDiagonallyDominant() || !PassedL1Norm());
+	//}while(!IsDiagonallyDominant() || !PassedL1Norm());
 
-	cout << "A: " << endl;
-	cout << A[0][0] << "\t " << A[0][1] << "\t " << A[0][2] << endl;
-	cout << A[1][0] << "\t " << A[1][1] << "\t " << A[1][2] << endl;
-	cout << A[2][0] << "\t " << A[2][1] << "\t " << A[2][2] << endl;
-
-	cout << "b:" << endl;
-	cout << b[0] << "\t " << b[1] << "\t " << b[0] << endl << endl;
 }
 
 
@@ -212,6 +206,20 @@ void GaussSiedelSolution()
 
 	}while(cond1 || cond1 || cond1);
 
+	//Divergence check
+	stringstream ss0, ss1, ss2;
+	ss0 << x0_new;
+	ss1 << x1_new;
+	ss2 << x2_new;
+	if (ss0.str() == "1.#INF0000" || ss1.str() == "1.#INF0000" || ss2.str() == "1.#INF0000" ||
+		ss0.str() == "-1.#INF0000" || ss1.str() == "-1.#INF0000" || ss2.str() == "-1.#INF0000" ||
+		ss0.str() == "1.#INF" || ss1.str() == "1.#INF" || ss2.str() == "1.#INF" ||
+		ss0.str() == "-1.#INF" || ss1.str() == "-1.#INF" || ss2.str() == "-1.#INF")
+	{
+		cout << "Divergence observed." << endl;
+		return;
+	}
+
 	cout << "Iteration: " << ++count << endl;
 	cout << "\t\tx = " << x0_new << endl;
 	cout << "\t\ty = " << x1_new << endl;
@@ -287,10 +295,11 @@ void GaussJacobiSolution()
 
 			if(divergence_count > divergence_count_threshold)
 			{
-				cout << "Divergence observed" << endl;
+				cout << "Divergence observed." << endl;
 				return;
 			}
 		}
+		
 		else
 		{
 			divergence_count = 0;
@@ -308,6 +317,20 @@ void GaussJacobiSolution()
 
 	}while(cond1 || cond1 || cond1);
 
+	//Divergence check
+	stringstream ss0, ss1, ss2;
+	ss0 << x0_new;
+	ss1 << x1_new;
+	ss2 << x2_new;
+	if (ss0.str() == "1.#INF0000" || ss1.str() == "1.#INF0000" || ss2.str() == "1.#INF0000" ||
+		ss0.str() == "-1.#INF0000" || ss1.str() == "-1.#INF0000" || ss2.str() == "-1.#INF0000" ||
+		ss0.str() == "1.#INF" || ss1.str() == "1.#INF" || ss2.str() == "1.#INF" ||
+		ss0.str() == "-1.#INF" || ss1.str() == "-1.#INF" || ss2.str() == "-1.#INF")
+	{
+		cout << "Divergence observed." << endl;
+		return;
+	}
+
 	cout << "Iteration: " << ++count << endl;
 	cout << "\t\tx = " << x0_new << endl;
 	cout << "\t\ty = " << x1_new << endl;
@@ -321,14 +344,61 @@ void GaussJacobiSolution()
 }
 
 
+void CreateNonDiagonallyDominantMatrix()
+{
+	GenerateEquations();
+
+	A[0][2] = A[0][0] + GetRandomNumber();
+
+	/*if (!IsDiagonallyDominant())
+		cout << "Not Diagonally Dominant" << endl;*/
+}
+
+
+void CreateDiagonallyDominantMatrix()
+{
+	do{
+		GenerateEquations();
+	}while(!IsDiagonallyDominant() || !PassedL1Norm());
+}
+
+
+
 int main(void)
 {
 	//Form matrix
+	cout << "*******************Diagonally Dominant Matrix*******************" << endl;
 	GenerateEquations();
+
+	cout << "A: " << endl;
+	cout << A[0][0] << "\t " << A[0][1] << "\t " << A[0][2] << endl;
+	cout << A[1][0] << "\t " << A[1][1] << "\t " << A[1][2] << endl;
+	cout << A[2][0] << "\t " << A[2][1] << "\t " << A[2][2] << endl;
+
+	cout << "b:" << endl;
+	cout << b[0] << "\t " << b[1] << "\t " << b[0] << endl << endl;
 
 	GaussSiedelSolution();
 
 	GaussJacobiSolution();
+
+	CreateNonDiagonallyDominantMatrix();
+
+	cout << "\n\n*******************Diagonally Non-dominant Matrix*******************" << endl;
+
+	cout << "A: " << endl;
+	cout << A[0][0] << "\t " << A[0][1] << "\t " << A[0][2] << endl;
+	cout << A[1][0] << "\t " << A[1][1] << "\t " << A[1][2] << endl;
+	cout << A[2][0] << "\t " << A[2][1] << "\t " << A[2][2] << endl;
+
+	cout << "b:" << endl;
+	cout << b[0] << "\t " << b[1] << "\t " << b[0] << endl << endl;
+
+	GaussSiedelSolution();
+
+	GaussJacobiSolution();
+
+
 
 	getchar();
 

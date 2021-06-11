@@ -1,0 +1,129 @@
+Enter significant digits (3,4,5,6)
+3
+Enter 1 for Gaussian Elimination without pivoting else enter 2.
+1
+A:
+3.18     2.47
+2.36     0.902
+b:
+4.85     1
+
+Solution:
+x: -0.651
+y: 2.8
+
+Enter significant digits (3,4,5,6)
+3
+Enter 1 for Gaussian Elimination without pivoting else enter 2.
+2
+A:
+7.77     0.954
+23.3     0.0176
+b:
+0.678    0.813
+
+After pivoting
+A:
+23.3, 0.0176
+7.77, 0.954
+b:
+0.813, 0.678
+
+Solution:
+x: 0.0345
+y: 0.429
+
+
+
+
+Enter significant digits (3,4,5,6)
+4
+Enter 1 for Gaussian Elimination without pivoting else enter 2.
+1
+A:
+1.155    2.813
+0.1367   9.898
+b:
+8.656    0.6038
+
+Solution:
+x: 7.602
+y: -0.04393
+
+
+Enter significant digits (3,4,5,6)
+4
+Enter 1 for Gaussian Elimination without pivoting else enter 2.
+2
+A:
+1.377    1.134
+1.095    1.014
+b:
+0.08058  0.4842
+
+Solution:
+x: -3.025
+y: 3.744
+
+
+
+
+Enter significant digits (3,4,5,6)
+5
+Enter 1 for Gaussian Elimination without pivoting else enter 2.
+1
+A:
+8.5134   0.84174
+0.12343  0.095493
+b:
+1.1428   0.37771
+
+Solution:
+x: -0.29448
+y: 4.336
+
+
+
+Enter significant digits (3,4,5,6)
+5
+Enter 1 for Gaussian Elimination without pivoting else enter 2.
+2
+A:
+38.499   0.45404
+5.8497   0.26241
+b:
+2.2716   0.30604
+
+Solution:
+x: 0.061389
+y: -0.20225
+
+
+Enter significant digits (3,4,5,6)
+6
+Enter 1 for Gaussian Elimination without pivoting else enter 2.
+1
+A:
+0.746561         0.670303
+0.620473         1.21644
+b:
+0.479087         0.220241
+
+Solution:
+x: 0.884022
+y: -0.269861
+
+
+Enter significant digits (3,4,5,6)
+6
+Enter 1 for Gaussian Elimination without pivoting else enter 2.
+2
+A:
+4.1155   1.19618
+2.55322  0.546806
+b:
+0.877792         0.117155
+
+Solution:
+x: -0.422831
+y: 2.18859
