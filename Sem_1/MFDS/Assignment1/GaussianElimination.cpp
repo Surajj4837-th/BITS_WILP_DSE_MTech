@@ -5,6 +5,8 @@
 using namespace std;
 
 double A[2][2], b[2];
+double Matrix[2][2] = {};
+double B[2] = {};
 int sd = 2;
 
 
@@ -25,20 +27,20 @@ void GenerateEquations()
 {
 	srand ( time(NULL) );
 
-	A[0][0]	= Round((double)rand()/(double)(rand()));
-	A[0][1]	= Round((double)rand()/(double)(rand()));
-	A[1][0]	= Round((double)rand()/(double)(rand()));
-	A[1][1]	= Round((double)rand()/(double)(rand()));
+	Matrix[0][0]	= Round((double)rand()/(double)(rand()));
+	Matrix[0][1]	= Round((double)rand()/(double)(rand()));
+	Matrix[1][0]	= Round((double)rand()/(double)(rand()));
+	Matrix[1][1]	= Round((double)rand()/(double)(rand()));
 
-	b[0]	= Round((double)rand()/(double)(rand()));
-	b[1]	= Round((double)rand()/(double)(rand()));
+	B[0]	= Round((double)rand()/(double)(rand()));
+	B[1]	= Round((double)rand()/(double)(rand()));
 
 	cout << "A: " << endl;
-	cout << A[0][0] << "\t " << A[0][1] << endl;
-	cout << A[1][0] << "\t " << A[1][1] << endl;
+	cout << Matrix[0][0] << "\t " << Matrix[0][1] << endl;
+	cout << Matrix[1][0] << "\t " << Matrix[1][1] << endl;
 
-	cout << "b:" << endl;
-	cout << b[0] << "\t " << b[1] << endl << endl;
+	cout << "B:" << endl;
+	cout << B[0] << "\t " << B[1] << endl << endl;
 }
 
 
@@ -99,12 +101,18 @@ int main(void)
 	{
 		cout << "invalid significant digits" << endl;
 		return 0;
-	}	
-	
+	}
+
 	//Form matrix
 	GenerateEquations();
 
 	cout << "******************Without Pivoting******************" << endl;
+
+	memcpy(A, Matrix, sizeof(double) * 2 * 2);
+	memcpy(b, B, sizeof(double) * 2);
+
+	/**/
+
 	GaussianEliminationWithoutPivoting();
 
 	double y = Round(b[1]/A[1][1]);
@@ -114,8 +122,13 @@ int main(void)
 	cout << "x: " << x << endl;
 	cout << "y: " << y << endl;
 
+	
 
 	cout << endl << "******************With Pivoting******************" << endl;
+
+	memcpy(A, Matrix, sizeof(double) * 2 * 2);
+	memcpy(b, B, sizeof(double) * 2);
+
 	GaussianEliminationWithPivoting();
 
 	y = Round(b[1]/A[1][1]);
@@ -124,7 +137,7 @@ int main(void)
 	cout << "Solution:" << endl;
 	cout << "x: " << x << endl;
 	cout << "y: " << y << endl;
-	
+
 	getchar();
 	return 0;
 }

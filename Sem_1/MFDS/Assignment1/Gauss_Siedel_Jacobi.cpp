@@ -376,7 +376,7 @@ int main(void)
 	cout << A[2][0] << "\t " << A[2][1] << "\t " << A[2][2] << endl;
 
 	cout << "b:" << endl;
-	cout << b[0] << "\t " << b[1] << "\t " << b[0] << endl << endl;
+	cout << b[0] << "\t " << b[1] << "\t " << b[2] << endl << endl;
 
 	GaussSiedelSolution();
 
@@ -392,14 +392,12 @@ int main(void)
 	cout << A[2][0] << "\t " << A[2][1] << "\t " << A[2][2] << endl;
 
 	cout << "b:" << endl;
-	cout << b[0] << "\t " << b[1] << "\t " << b[0] << endl << endl;
+	cout << b[0] << "\t " << b[1] << "\t " << b[2] << endl << endl;
 
 	GaussSiedelSolution();
 
 	GaussJacobiSolution();
-
-
-
+	
 	getchar();
 
 	return 0;
