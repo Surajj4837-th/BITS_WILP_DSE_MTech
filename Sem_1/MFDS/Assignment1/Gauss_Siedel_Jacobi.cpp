@@ -2,13 +2,12 @@
 #include <sstream>
 #include <iomanip>
 #include <iostream>
-//#include <cstdlib>
 
 using namespace std;
 
 float A[3][3], b[3];
 
-float error_threshold = 0.01;
+float error_threshold = 0.01f;
 
 float GetRandomNumber()
 {
@@ -29,6 +28,7 @@ float GetRandomNumber()
 bool IsDiagonallyDominant()
 {
 	bool DiagonallyDominant = false;
+
 	//Check diagonally dominant condition
 	if( fabs(A[0][0]) >= (fabs(A[0][1]) + fabs(A[0][2])))
 		if( fabs(A[1][1]) >= (fabs(A[1][0]) + fabs(A[1][2])))
@@ -36,6 +36,60 @@ bool IsDiagonallyDominant()
 				DiagonallyDominant = true;
 
 	return DiagonallyDominant;
+}
+
+
+bool PassedL1Norm()
+{
+	//Testing L1 norm for Gauss Jacobi
+	/*cout << "A: " << endl;
+	cout << A[0][0] << "\t " << A[0][1] << "\t " << A[0][2] << endl;
+	cout << A[1][0] << "\t " << A[1][1] << "\t " << A[1][2] << endl;
+	cout << A[2][0] << "\t " << A[2][1] << "\t " << A[2][2] << endl;*/
+
+	float temp[3][3];
+
+	memcpy(temp, A, sizeof(float) * 3 * 3);
+
+	//Scaling and only keeping -(L + U) form
+	temp[0][1] /= temp[0][0];
+	temp[0][2] /= temp[0][0];
+	temp[0][0] = 0;
+
+	temp[1][0] /= temp[1][1];
+	temp[1][2] /= temp[1][1];
+	temp[1][1] = 0;
+
+	temp[2][0] /= temp[2][2];
+	temp[2][1] /= temp[2][2];
+	temp[2][2] = 0;
+
+	temp[0][0] *= -1;
+	temp[0][1] *= -1;
+	temp[0][2] *= -1; 
+
+	temp[1][0] *= -1;
+	temp[1][1] *= -1;
+	temp[1][2] *= -1; 
+
+	temp[2][0] *= -1;
+	temp[2][1] *= -1;
+	temp[2][2] *= -1;
+
+	/*cout << temp[0][0] << "\t " << temp[0][1] << "\t " << temp[0][2] << endl;
+	cout << temp[1][0] << "\t " << temp[1][1] << "\t " << temp[1][2] << endl;
+	cout << temp[2][0] << "\t " << temp[2][1] << "\t " << temp[2][2] << endl;*/
+
+	float col0_sum = fabs(temp[0][0]) + fabs(temp[1][0]) + fabs(temp[2][0]);
+	float col1_sum = fabs(temp[0][1]) + fabs(temp[1][1]) + fabs(temp[2][1]);
+	float col2_sum = fabs(temp[0][2]) + fabs(temp[1][2]) + fabs(temp[2][2]);
+
+	float max_val = max(col0_sum, max(col1_sum, col2_sum));
+
+	if (max_val < 1)
+		return true;
+
+	return false;
 }
 
 
@@ -62,7 +116,7 @@ void GenerateEquations()
 		b[1]	= GetRandomNumber();
 		b[2]	= GetRandomNumber();
 
-	}while(!IsDiagonallyDominant());
+	}while(!IsDiagonallyDominant() || !PassedL1Norm());
 
 	cout << "A: " << endl;
 	cout << A[0][0] << "\t " << A[0][1] << "\t " << A[0][2] << endl;
@@ -126,7 +180,7 @@ void GaussSiedelSolution()
 		ratio0 = floor((fabs(x0_new - x0_old)/fabs(x0_old)) * 10000) / 10000;
 		ratio1 = floor((fabs(x1_new - x1_old)/fabs(x1_old)) * 10000) / 10000;
 		ratio2 = floor((fabs(x2_new - x2_old)/fabs(x2_old)) * 10000) / 10000;
-				
+
 		x0_old = x0_new;
 		x1_old = x1_new;
 		x2_old = x2_new;
@@ -282,5 +336,6 @@ int main(void)
 }
 
 /*
-Answers verified from:https://planetcalc.com/3571/
+1. Answers verified from:https://planetcalc.com/3571/
+2. To do: norm check for Gauss Seidel method.
 */
