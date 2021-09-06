@@ -6,7 +6,7 @@
 #define RANGE 5
 #define NEGATIVE_ALPHAS 0.4
 #define POSITIVE_ALPHAS 0.25
-#define LEARNING_RATE 0.4
+#define LEARNING_RATE 0.3
 #define MIN_ERROR 0.02
 
 using namespace std;
